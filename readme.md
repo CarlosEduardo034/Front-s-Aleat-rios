@@ -1,0 +1,1 @@
+Essa pasta contem pequenos arquivos de efeitos e aplicações gerais para telas de interação com o usuário. Ajude enviando o que voçê criou :O

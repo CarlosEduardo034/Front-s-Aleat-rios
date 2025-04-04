@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Máquina de Escrever</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      font-size: 24px;
+      background-color: #111;
+      color: #0f0;
+      padding: 40px;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background-color: #0f0;
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink {
+      0%   { opacity: 1; }
+      50%  { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="typewriter"></div><div class="cursor"></div>
+
+  <script>
+    const text = "Olá! Este é um efeito de máquina de escrever feito com JavaScript.";
+    const speed = 50; // velocidade em milissegundos
+
+    let index = 0;
+    const typewriter = document.getElementById("typewriter");
+
+    function type() {
+      if (index < text.length) {
+        typewriter.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, speed);
+      }
+    }
+
+    type();
+  </script>
+
+</body>
+</html>
