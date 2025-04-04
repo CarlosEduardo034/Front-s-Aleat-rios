@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap');
+
+    body {
+        background: url('pixelart_koi.gif');
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: flex;
+        padding-top: 40vh;
+        padding-left: 8vw;
+    }
+
+    #typewriter {
+        color: white;
+        font-size: 80px;
+        font-family: "Bungee Inline", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <div id="typewriter"></div>
+
+    <script>
+        const text = "Opa, dboa?! I'm Carlos Eduardo...";
+        const speed = 50; // velocidade em milissegundos
+
+        let index = 0;
+        const typewriter = document.getElementById("typewriter");
+
+        function type() {
+            if (index < text.length) {
+                typewriter.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, speed);
+            }
+        }
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                type();
+            }
+        });
+    </script>
+
+</html>
+
