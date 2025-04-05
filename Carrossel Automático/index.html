@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carrossel Automático</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .carousel {
+      width: 80%;
+      max-width: 700px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .carousel-buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      padding: 0 20px;
+    }
+
+    .carousel-buttons button {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      border-radius: 50%;
+      padding: 5px 15px;
+    }
+
+    .carousel-buttons button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="carousel">
+    <div class="carousel-track" id="track">
+      <div class="carousel-slide"><img src="https://picsum.photos/id/1015/800/400" alt="Imagem 1"></div>
+      <div class="carousel-slide"><img src="https://picsum.photos/id/1016/800/400" alt="Imagem 2"></div>
+      <div class="carousel-slide"><img src="https://picsum.photos/id/1018/800/400" alt="Imagem 3"></div>
+      <div class="carousel-slide"><img src="https://picsum.photos/id/1020/800/400" alt="Imagem 4"></div>
+      <div class="carousel-slide"><img src="https://picsum.photos/id/1021/800/400" alt="Imagem 5"></div>
+    </div>
+    <div class="carousel-buttons">
+      <button id="prev">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    const track = document.getElementById('track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    let currentIndex = 0;
+    let interval;
+
+    function updateCarousel() {
+      const slideWidth = slides[0].clientWidth;
+      track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    function goToNext() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    }
+
+    function goToPrev() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    }
+
+    function startAutoSlide() {
+      interval = setInterval(goToNext, 3000); // muda a cada 3 segundos
+    }
+
+    function stopAutoSlide() {
+      clearInterval(interval);
+    }
+
+    // Eventos
+    nextButton.addEventListener('click', () => {
+      goToNext();
+      stopAutoSlide();
+      startAutoSlide();
+    });
+
+    prevButton.addEventListener('click', () => {
+      goToPrev();
+      stopAutoSlide();
+      startAutoSlide();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+
+    // Início
+    updateCarousel();
+    startAutoSlide();
+  </script>
+
+</body>
+</html>
+
