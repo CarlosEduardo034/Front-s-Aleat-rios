@@ -1,1 +1,1 @@
-Slider criativo e diferente do comum.
+Slider criativo que achei no codepen, modifiquei um pouco
