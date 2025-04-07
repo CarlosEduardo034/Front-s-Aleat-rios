@@ -1,0 +1,1 @@
+Slider criativo e diferente do comum.
